@@ -4,65 +4,53 @@ import CampoTexto from "../CampoTexto"
 import ListaSuspensa from "../ListaSuspensa"
 import './Formulario.css'
 
-const Formulario = (props) => {
-    
-    const[nome, setNome] = useState('')
-    const[cargo, setCargo] = useState('')
-    const[imagem, setImagem] = useState('')
-    const[time, setTime] = useState('')
-    
+const Formulario = ({aoCadastrar, times}) => {
+
+    const [nome, setNome] = useState('')
+    const [personagem, setpersonagem] = useState('')
+    const [imagem, setImagem] = useState('')
+    const [time, setTime] = useState('')
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
-        props.aoJogadorCadastrado({
+        console.log('form enviado', nome, personagem, imagem, time )
+        aoCadastrar({
             nome,
-            cargo,
+            personagem,
             imagem,
             time
-    })
-    setNome('')
-    setCargo('')
-    setImagem('')
-    setTime('')
+        })
     }
 
-    return(
-    <section className="formulario">
-        <form onSubmit={aoSalvar}>
-            <h2>Preencha os dados para o card dos jogadores da DCG</h2>
-            <CampoTexto
-                obrigatorio = {true}
-                label="Nome" 
-                placeholder = "Digite seu nome" 
-                valor = {nome}
-                aoAlterado = {valor => setNome(valor)}
-            />    
-            <CampoTexto
-                obrigatorio = {true} 
-                label="Cargo" 
-                placeholder = "Digite seu cargo" 
-                 valor = {cargo}
-                aoAlterado = {valor => setCargo(valor)}
-            />    
-            <CampoTexto 
-                obrigatorio = {true} 
-                label="Imagem" 
-                placeholder = "Digite o endereço da imagem" 
-                valor = {imagem}
-                aoAlterado = {valor => setImagem(valor)}
-            />   
-            <ListaSuspensa
-             obrigatorio = {true} 
-             label="Time" 
-             itens = {props.times}
-             valor = {time}
-             aoAlterado = {valor => setTime(valor)}
-             />
-            <Botao> 
-                Criar Card
-            </Botao>            
-        </form>
-    </section>
+    return (
+        <section className="formulario-container">
+            <form className="formulario" onSubmit={aoSalvar}>
+                <h2>Preencha os dados para criar o card do jogador.</h2>
+                <CampoTexto
+                    obrigatorio={true}
+                    label='Nome'
+                    placeholder='Digite seu nome '
+                    valor={nome}
+                    aoAlterado={valor => setNome(valor)}/>
+                <CampoTexto
+                    obrigatorio={true}
+                    label='Personagem' 
+                    placeholder='Digite seu personagem '
+                    valor={personagem}
+                    aoAlterado={valor => setpersonagem(valor)}/>
+                <CampoTexto 
+                    label='Imagem' 
+                    placeholder='Informe o endereço da imagem '
+                    aoAlterado={valor => setImagem(valor)}/>
+                <ListaSuspensa 
+                    obrigatorio={true}
+                    label='Times'
+                    items={times} 
+                    valor={time}
+                    aoAlterado={valor => setTime(valor)}/>
+                <Botao texto='Criar card' />
+            </form>
+        </section>
     )
 }
 

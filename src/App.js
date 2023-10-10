@@ -29,23 +29,72 @@ function App() {
     }
   ]
 
-  const [jogadores, setJogadores] = useState([])
+  const inicial = [
+    {
+      nome: 'Wellington',
+      personagem: 'Raze',
+      imagem: 'https://github.com/Wellingt0ndev.png',
+      time: times[1].nome
+    },
+    {
+      nome: "Fabian",
+      personagem: "Omen",
+      imagem: "/imagens/fabian.jpeg",
+      time: times[2].nome
+    },
+    {
+      nome: "Jojo",
+      personagem: "Sova",
+      imagem: "/imagens/jojo.jpeg",
+      time: times[0].nome
+    },
+    {
+      nome: "Léo",
+      personagem: "DeadLock",
+      imagem: "/imagens/leo.jpeg",
+      time: times[3].nome
+    },
+    {
+      nome: "Felipe",
+      personagem: "Reyna",
+      imagem: "/imagens/felipe.jpeg",
+      time: times[1].nome
+    },
+    {
+      nome: "Maria",
+      personagem: "Sage",
+      imagem: "/imagens/maria.jpeg",
+      time: times[3].nome
+    },
+    {
+      nome: "Cris",
+      personagem: "Killjoy",
+      imagem: "/imagens/cris.jpeg",
+      time: times[3].nome
+    }
+  ]
 
-  const aoNovoJogadorAdionado = (jogador) =>{
-    console.log(jogador)
-    setJogadores([...jogadores, jogador]);
+  const [jogadores, setJogadores] = useState(inicial)
+
+  function deletarJogador(){
+    
   }
+
+  
   return (
     <div className="App">
       <Banner/>  
-      <Formulario times={times.map(time => time.nome)} aoJogadorCadastrado={jogador => aoNovoJogadorAdionado(jogador)} /> 
-      {times.map(time => <Time 
-      key={time.nome} 
-      nome={time.nome} 
-      corPrimaria = {time.corPrimaria} 
-      corSecundaria = {time.corSecundaria}
-      jogadores = {jogadores.filter(jogador => jogador.time === time.nome)}
-      />)}
+      <Formulario times={times.map(time => time.nome)} aoCadastrar={jogador => setJogadores([...jogadores, jogador])} /> 
+      <section className='times'>
+        <h1>Função</h1>
+        {times.map((time, indice) => <Time 
+          key={indice} 
+          time={time} 
+          jogadores={jogadores.filter(jogador => jogador.time === time.nome)} 
+          aoDeletar={deletarJogador}
+          />)
+        }        
+      </section>
       <Rodape />      
     </div>
   );
