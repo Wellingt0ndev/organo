@@ -50,7 +50,7 @@ const Formulario = ({aoCadastrar, times, cadastrarTime}) => {
                     items={times} 
                     valor={time}
                     aoAlterado={valor => setTime(valor)}/>
-                <Botao texto='Criar card' />
+                <Botao texto="Criar card" />
             </form>
             <form className="formulario" onSubmit={(evento) => {
                 evento.preventDefault();

@@ -120,7 +120,7 @@ function App() {
   
   return (
     <div className="App">
-      <Banner/>  
+      <Banner enderecoImagem='imagens/banner-valorant.png' textoAlternativo='O banner principal da página organo'/>  
       <Formulario 
         cadastrarTime = { cadastrarTime}
         times={times.map(time => time.nome)}  

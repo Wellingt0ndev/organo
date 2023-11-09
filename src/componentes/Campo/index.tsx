@@ -1,10 +1,17 @@
 import './Campo.css'
 
-const Campo = ({type = 'text', label, placeholder, valor, aoAlterado, obrigatorio = false }) => {
+interface CampoProps{
+    aoAlterado: (valor: string) => void
+    placeholder: string
+    valor: string
+    label: string
+    obrigatorio: boolean
+}
+
+const Campo = ({ aoAlterado, label, obrigatorio, placeholder, valor}: CampoProps) => {
     return (<div className={`campo campo-${'color'}`}>
         <label>{label}</label>
         <input 
-            type={type} 
             value={valor} 
             onChange={evento => aoAlterado(evento.target.value)} 
             required={obrigatorio} 
